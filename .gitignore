@@ -1,0 +1,4 @@
+node_modules/
+.env
+mc-servers/*
+!mc-servers/README.md
