@@ -1,5 +1,6 @@
 const serverManager = require("../services/serverManager");
 const minecraftService = require("../services/minecraftService");
+const eulaService = require("../services/eulaService");
 // Exibe o nome da pasta e se ela existe
 exports.show = (req,res) => {
     const serverName = req.params.serverName;
@@ -35,3 +36,15 @@ exports.restart = async(req,res)=>{
     const r = await minecraftService.restart(serverName);
     res.json(r);
 }
+// Exibe a eula do servidor e me retorna uma resposta
+exports.eula = (req,res) => {
+    const serverName = req.params.serverName;
+    const eula = eulaService.getEula(serverName);
+    res.json(eula);
+};
+// Aceita a eula do servidor e me retorna uma resposta
+exports.acceptEula = (req,res) => {
+    const serverName = req.params.serverName;
+    const eula = eulaService.acceptEula(serverName);
+    res.json(eula);
+};
