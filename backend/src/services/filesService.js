@@ -9,13 +9,13 @@ class filesService{
         // Pega o caminho lê ele e caso o caminho digitado saia da raiz do servidor
         // Retorna um erro
         const tPath = path.join(server.path, rPath);
-        const files = fs.readdirSync(tPath,{withFileTypes:true});
         const rootPath = path.resolve(server.path);
         if(!tPath.startsWith(rootPath)){
             return{
                 error:"Tentativa de invasão detectada"
             };
         } 
+        const files = fs.readdirSync(tPath,{withFileTypes:true});
         // Retorna os arquivos mostrando o tipo e o caminho
         return files.map(f=>({
             name: f.name,
