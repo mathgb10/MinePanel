@@ -1,6 +1,6 @@
 const fs = require("fs");
 const path = require("path");
-const propertiesService = require("./propertiesService")
+const propertiesService = require("./propertiesService");
 // const { config } = require("process");
 
 class ServerManager {
