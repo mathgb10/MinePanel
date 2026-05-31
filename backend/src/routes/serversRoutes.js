@@ -11,5 +11,7 @@ router.post("/:serverName/restart", serversController.restart);
 // Eula
 router.get("/:serverName/eula", serversController.eula);
 router.post("/:serverName/eula/accept", serversController.acceptEula);
+// Arquivos
+router.get("/:serverName/files",serversController.files);
 
 module.exports = router;

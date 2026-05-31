@@ -1,6 +1,7 @@
 const serverManager = require("../services/serverManager");
 const minecraftService = require("../services/minecraftService");
 const eulaService = require("../services/eulaService");
+const filesService = require("../services/filesService");
 // Exibe o nome da pasta e se ela existe
 exports.show = (req,res) => {
     const serverName = req.params.serverName;
@@ -48,3 +49,10 @@ exports.acceptEula = (req,res) => {
     const eula = eulaService.acceptEula(serverName);
     res.json(eula);
 };
+
+exports.files = (req,res) =>{
+    const serverName = req.params.serverName;
+    const rPath = req.query.path || "";
+    const files = filesService.getFiles(serverName,rPath); 
+    res.json(files);
+}
