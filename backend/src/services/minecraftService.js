@@ -125,7 +125,7 @@ class MinecraftService {
     async restart(serverName){
         // Roda o stop espera 5000ms e roda o start depois me retorna um payload
         const stop = await this.stop(serverName);
-        await (resolve => setTimeout(resolve,5000));
+        await new Promise (resolve => setTimeout(resolve,5000));
         const start = await this.start(serverName);
         return{
             success: start.success,

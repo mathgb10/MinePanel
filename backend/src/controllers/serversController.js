@@ -49,10 +49,17 @@ exports.acceptEula = (req,res) => {
     const eula = eulaService.acceptEula(serverName);
     res.json(eula);
 };
-
+// Exibe os arquivos/diretorios
 exports.files = (req,res) =>{
     const serverName = req.params.serverName;
     const rPath = req.query.path || "";
     const files = filesService.getFiles(serverName,rPath); 
     res.json(files);
+}
+// Exibe conteudo do arquivo
+exports.fileContent = (req,res) =>{
+    const serverName = req.params.serverName;
+    const rPath = req.query.path || "";
+    const file = filesService.getFileContent(serverName,rPath); 
+    res.json(file);
 }

@@ -13,5 +13,7 @@ router.get("/:serverName/eula", serversController.eula);
 router.post("/:serverName/eula/accept", serversController.acceptEula);
 // Arquivos
 router.get("/:serverName/files",serversController.files);
+// Conteudo de arquivo
+router.get("/:serverName/files/content", serversController.fileContent);
 
 module.exports = router;

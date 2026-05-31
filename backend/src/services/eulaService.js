@@ -38,7 +38,7 @@ class eulaService{
         const monthName = ["January", "February", "March", "April", "May", "June","July", "August", "September", "October", "November", "December"]
 
         // Escrevo no arquivo eula e retorna uma resposta
-        fs.writeFileSync(eulaPath,`#By changing the setting below to TRUE you are indicating your agreement to our EULA (https://account.mojang.com/documents/minecraft_eula).\n#${dayName[day]} ${monthName[month]} ${dayNum} ${hours}:${minutes}:${seconds} BRT ${year} \neula=true\n`,"utf8");
+        fs.writeFileSync(eulaPath,`#By changing the setting below to TRUE you are indicating your agreement to our EULA (https://account.mojang.com/documents/minecraft_eula).\n#${dayName[day]} ${monthName[month]} ${dayNum} ${hours}:${minutes}:${seconds} BRT ${year}\neula=true`,"utf8");
         return {
             success: true,
             accepted: true
