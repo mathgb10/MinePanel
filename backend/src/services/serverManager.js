@@ -21,6 +21,7 @@ class ServerManager {
         return folders;
     }
 
+    // Pego o arquivo server.properties e formato
     getServerProperties(serverPath){
         const hasServerProperties = fs.existsSync(path.join(serverPath,"server.properties"));
         if(hasServerProperties){
@@ -32,19 +33,24 @@ class ServerManager {
         }
     }
 
+    // Retorna o servidor e suas informações
     getServer(serverName) {
+        // Caminho do servidor
         const serverPath = path.join(
             process.cwd(),
             "..",
             "mc-servers",
             serverName
         );
+        // Caso ele não existir retorna null
         if (!fs.existsSync(serverPath)) {
             return null;
         }
+        // Valida a configuração caso não exista ele cria uma de exemplo
         const configPath = path.join(serverPath, "panel.json");
         let config = null;
         if (fs.existsSync(configPath)) {
+            // Le o arquivo de configuração e formata em JSON
             const configSeca = fs.readFileSync(configPath, "utf8");
             config = JSON.parse(configSeca);
         } else {
@@ -57,6 +63,7 @@ class ServerManager {
                     "max": "4G"
                 }
             }
+            // Escrevo o arquivo no caminho e mando uma mensagem no console (temporariamente)
             fs.writeFileSync(configPath,JSON.stringify(defaultConfig,null,4),"utf8");
             const txt = 'Não foi encontrada nenhum arquivo de configuração\nCriamos um arquivo de exemplo por favor certifique-se de alterar as informações';
             config = defaultConfig;

@@ -1,6 +1,7 @@
 const net = require("net");
 
 class ProcessService {
+    // Valido se a porta que o servidor vai rodar está aberta
     isPortOpen(port, host = "localhost") {
         return new Promise((resolve) => {
             const socket = new net.Socket();

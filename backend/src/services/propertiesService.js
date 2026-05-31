@@ -1,6 +1,7 @@
 const fs = require("fs");
 
 class PropertiesService{
+    // Formata o server.properties
     parse(filePath){
         const content = fs.readFileSync(filePath,"utf8");
         const lines = content.split("\n");
