@@ -16,4 +16,5 @@ router.get("/:serverName/files",serversController.files);
 // Conteudo de arquivo
 router.get("/:serverName/files/content", serversController.fileContent);
 
+router.put("/:serverName/files/content", serversController.saveFileContent);
 module.exports = router;

@@ -8,8 +8,8 @@ class filesService {
         const server = serverManager.getServer(serverName);
         // Pega o caminho lê ele e caso o caminho digitado saia da raiz do servidor
         // Retorna um erro
-        const tPath = path.resolve(server.path, rPath);
         const rootPath = path.resolve(server.path);
+        const tPath = path.resolve(server.path, rPath);
         if (!tPath.startsWith(rootPath)) {
             return {
                 error: "Tentativa de invasão detectada"
@@ -47,6 +47,24 @@ class filesService {
         return {
             path: tPath,
             file
+        };
+    }
+
+    saveFileContent(serverName,rPath,content){
+        const server = serverManager.getServer(serverName);
+        const rootPath = path.resolve(server.path);
+        const tPath = path.resolve(server.path,rPath);
+        if (!tPath.startsWith(rootPath)) {
+            return {
+                error: "Tentativa de invasão detectada"
+            };
+        }
+        const stats = fs.statSync(tPath);
+        fs.writeFileSync(tPath,content,"utf8");
+        return{
+            success: true,
+            path: rPath,
+            msg: "Arquivo salvo com sucesso"
         };
     }
 }

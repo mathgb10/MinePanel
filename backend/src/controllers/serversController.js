@@ -63,3 +63,10 @@ exports.fileContent = (req,res) =>{
     const file = filesService.getFileContent(serverName,rPath); 
     res.json(file);
 }
+
+exports.saveFileContent = (req,res) =>{
+    const serverName = req.params.serverName;
+    const { path: rPath, content } = req.body;
+    const result = filesService.saveFileContent(serverName, rPath, content);
+    res.json(result);
+}
