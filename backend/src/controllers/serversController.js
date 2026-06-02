@@ -70,3 +70,10 @@ exports.saveFileContent = (req,res) =>{
     const result = filesService.saveFileContent(serverName, rPath, content);
     res.json(result);
 }
+
+exports.createFolder = (req, res) => {
+    const serverName = req.params.serverName;
+    const { path: rPath } = req.body;
+    const result = filesService.createFolder(serverName, rPath);
+    res.json(result);
+};

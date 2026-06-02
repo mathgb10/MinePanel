@@ -33,12 +33,12 @@ class filesService {
                 error: "Tentativa de invasão detectada"
             };
         }
-        if(!fs.existsSync(tPath)){
+        if (!fs.existsSync(tPath)) {
             return {
                 error: "Arquivo não encontrado"
             };
         }
-        if(!fs.statSync(tPath)){
+        if (!fs.statSync(tPath)) {
             return {
                 error: "O caminho informado não é um arquivo"
             };
@@ -50,21 +50,50 @@ class filesService {
         };
     }
 
-    saveFileContent(serverName,rPath,content){
+    saveFileContent(serverName, rPath, content) {
         const server = serverManager.getServer(serverName);
         const rootPath = path.resolve(server.path);
-        const tPath = path.resolve(server.path,rPath);
+        const tPath = path.resolve(server.path, rPath);
         if (!tPath.startsWith(rootPath)) {
             return {
                 error: "Tentativa de invasão detectada"
             };
         }
         const stats = fs.statSync(tPath);
-        fs.writeFileSync(tPath,content,"utf8");
-        return{
+        fs.writeFileSync(tPath, content, "utf8");
+        return {
             success: true,
             path: rPath,
             msg: "Arquivo salvo com sucesso"
+        };
+
+
+    }
+
+    createFolder(serverName, rPath) {
+        const server = serverManager.getServer(serverName);
+
+        if (!server) {
+            return null;
+        }
+
+        const rootPath = path.resolve(server.path);
+        const tPath = path.resolve(server.path, rPath);
+
+        if (!tPath.startsWith(rootPath)) {
+            return { error: "Tentativa de invasão detectada" };
+        }
+
+        if (fs.existsSync(tPath)) {
+            return { error: "Pasta ou arquivo já existe" };
+        }
+
+        fs.mkdirSync(tPath, { recursive: true });
+
+        return {
+            success: true,
+            path: rPath,
+            msg: "Pasta criada com sucesso"
         };
     }
 }
